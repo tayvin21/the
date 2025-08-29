@@ -1,0 +1,14 @@
+{
+	"version": "1.0.0",
+	"name": "UltraGame",
+	"description": "Designed by AALayer.com",
+	"authors": [
+		{
+			"name": "AALayer Designs",
+			"url": "https://aalayer.com"
+		}
+	],
+	"require": {
+		"blesta": ">=3.2.0"
+	}
+}

@@ -1,0 +1,101 @@
+<style>
+.caesar-profile,
+.navbar-caesar,
+.navbar-vertical {
+	display: none!important
+}
+html {
+    background: #1c2746;
+	color: #fff!important
+}
+body {
+	background: 0 0!important;
+	height: 100vh
+}
+.mdis {
+	display: none!important
+}
+.copyrighty {
+    color: #fff !important;
+}
+@media (max-width:1580px) and (min-width:575px) {
+	body {
+		padding-left: 0!important
+	}
+}
+@media (max-width: 790px) {
+        .datspace {
+        height: 0px !important;
+        display: none !important;
+        }
+}
+</style>
+
+                <a class="cl" href="../"><img class="llogin" src="<?php echo $this->view_dir;?>images/logo.png" /></a>
+
+                <div class="col-md-6 offset-md-3 caesar-login">
+                    <h3><img class="il" src="<?php echo $this->view_dir;?>images/secure.png" /> Login to your Account</h3>
+                    <br />
+                    <div class="panel panel-blesta">
+                        <div class="panel-body">
+                            <?php echo (isset($message) ? $message : null);?>
+
+                            <?php
+                            $this->Form->create(null, ['class' => 'disable-on-submit']);
+                            if ((isset($vars->forward_to) ? $vars->forward_to : null)) {
+                                $this->Form->fieldHidden('forward_to', $vars->forward_to);
+                            }
+                            ?>
+                            <fieldset>
+                                <div class="form-group">
+                                    <?php
+                                    $this->Form->label($this->_('ClientLogin.index.field_username', true), 'login_username');
+                                    $this->Form->fieldText('username', (isset($vars->username) ? $vars->username : null), ['id' => 'login_username', 'class' => 'form-control', 'placeholder' => $this->_('ClientLogin.index.field_username', true)]);
+                                    ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php
+                                    $this->Form->label($this->_('ClientLogin.index.field_password', true), 'login_password');
+                                    $this->Form->fieldPassword('password', ['id' => 'login_password', 'class' => 'form-control', 'placeholder' => $this->_('ClientLogin.index.field_password', true)]);
+                                    ?>
+                                </div>
+                                <div class="checkbox">
+                                    <label for="login_remember_me">
+                                        <?php
+                                        $this->Form->fieldCheckbox('remember_me', 'true', (isset($vars->remember_me) ? $vars->remember_me : false), ['id' => 'login_remember_me']);
+                                        $this->_('ClientLogin.index.field_rememberme');
+                                        ?>
+                                    </label>
+                                </div>
+                                <?php
+                                if ((isset($captcha) ? $captcha : null)) {
+                                    ?>
+                                    <div class="form-group">
+                                        <?php echo $captcha;?>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt-alt"></i> <?php $this->_('ClientLogin.index.field_loginsubmit');?></button>
+                                <?php
+                                $this->Form->fieldSubmit('login', '', ['class' => 'hidden', 'hidefocus' => 'true']);
+                                ?>
+                            </fieldset>
+                            <?php
+                            $this->Form->end();
+                            ?>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="<?php echo $this->Html->safe($this->base_uri . 'login/reset/');?>"><?php $this->_('ClientLogin.index.link_resetpassword');?></a>
+                            <a href="<?php echo $this->Html->safe($this->base_uri . 'login/forgot/');?>" class="d-block float-xl-right"><?php $this->_('ClientLogin.index.link_forgotusername');?></a>
+                        </div>
+                    </div>
+                </div>
+
+<?php
+$this->Javascript->setInline('
+	$(document).ready(function() {
+		$("#login_username").focus();
+	});
+');
+?>

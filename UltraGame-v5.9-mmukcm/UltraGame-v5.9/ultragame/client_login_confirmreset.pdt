@@ -1,0 +1,82 @@
+<style>
+.caesar-profile,
+.navbar-caesar,
+.navbar-vertical {
+	display: none!important
+}
+html {
+	 background: #1c2746;
+	color: #fff!important
+}
+body {
+	background: 0 0!important;
+	height: 100vh
+}
+.mdis {
+	display: none!important
+}
+.copyrighty {
+    color: #fff !important;
+}
+@media (max-width:1580px) and (min-width:575px) {
+	body {
+		padding-left: 0!important
+	}
+}
+@media (max-width: 790px) {
+        .datspace {
+        height: 0px !important;
+        display: none !important;
+        }
+}
+</style>
+
+    <a class="cl" href="../"><img class="llogin" src="<?php echo $this->view_dir;?>images/logo.png" /></a>
+
+
+    <div class="col-md-6 offset-md-3 caesar-login">
+    <h3><img class="il" src="<?php echo $this->view_dir;?>images/secure.png" /> Client Login Confirm</h3>
+    <br />
+        <div class="panel panel-blesta">
+            <div class="card-content">
+                <div class="panel-body">
+                    <?php echo (isset($message) ? $message : null);?>
+
+                    <?php
+                    $this->Form->create(null, ['class' => 'disable-on-submit']);
+                    ?>
+                    <fieldset>
+                        <div class="form-group">
+                            <?php
+                            $this->Form->label($this->_('ClientLogin.confirmreset.field_new_password', true), 'login_new_password');
+                            $this->Form->fieldPassword('new_password', ['id' => 'login_new_password', 'class' => 'form-control']);
+                            ?>
+                        </div>
+                        <div class="form-group">
+                            <?php
+                            $this->Form->label($this->_('ClientLogin.confirmreset.field_confirm_password', true), 'login_confirm_password');
+                            $this->Form->fieldPassword('confirm_password', ['id' => 'login_confirm_password', 'class' => 'form-control']);
+                            ?>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">
+                            <i class="fas fa-arrow-circle-right"></i> <?php $this->_('ClientLogin.confirmreset.field_resetsubmit');?>
+                        </button>
+                        <a class="btn btn-light btn-block" href="<?php echo $this->Html->safe($this->base_uri . 'login/');?>">
+                            <i class="fas fa-ban"></i> <?php $this->_('ClientLogin.confirmreset.link_login');?>
+                        </a>
+                    </fieldset>
+                    <?php
+                    $this->Form->end();
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php
+$this->Javascript->setInline('
+    $(document).ready(function() {
+        $("#login_new_password").focus();
+    });
+');
+?>
